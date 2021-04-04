@@ -176,3 +176,131 @@ POST 方法被用于请求源服务器接受请求中的实体作为请求资源
   "url": "http://www.xxxxxxxx.com/index.php"
 }
 ```
+
+然后因为我参加了蓝桥杯和数学建模比赛，也得学习python的算法和用来建模的库，一步一个脚印，慢慢来
+
+**matplotlib库的使用:**
+
+```
+import matplotlib.pyplot as plt
+from numpy import *
+x = arange(-5*pi,5*pi,0.01)
+y = sin(x)/x
+plt.figure()
+plt.plot(x,y,linestyle='-.',color='r',label='sinx/x')
+plt.legend()
+plt.axis([-20,20,-10,10])
+plt.grid(True)
+plt.show()
+```
+
+
+
+**sympy库的使用：**
+
+```
+from sympy import *
+x = symbols('x')                   #初始化x
+y = 2*exp(x)-x*sin(x)
+ds1 = diff(y,x,1)                  #求y对于x的一阶导
+ds2 = diff(y,x,2)                  #求y对于x的二阶导
+zhi = ds2.evalf(subs=({x:0}))      ########求二阶导中当x等于0使的值
+z = -100*exp(-0.029*x)+100*x
+lim_z1 = limit(z,x,oo)             #求x趋于正无穷+oo时的极限
+lim_z2 = limit(z,x,-oo)            #求x趋于负无穷-oo时的极限
+
+
+x, y = symbols('x y')
+z = x ** 2 + y ** 2 - 1
+f = idiff(z, y, x)                 #求隐函数
+
+x = symbols('x')
+y = cos(x)/(sin(x)*(1+sin(x))**2)
+jf = integrate(y,x)                #求y对于x的积原函数
+jf = simplify(jf)                  #简化计算结果
+
+y = x**2*sin(x)
+jf = integrate(y,(x,0,pi/2))      #求y对于x在(0，2Π)的定积分
+jf = simplify(jf)
+print("定积分为:",jf)
+```
+
+**datetime库的使用：**
+
+```
+from datetime import *
+y,m,d=map(int,input().split('.'))
+d1=datetime(y,m,d)
+d2=datetime(y,1,1)
+print((d1-d2).days+1)             #求两时间差
+
+#获取当前时间
+n1=datetime.now()
+#获取时间是星期几(0-6)
+n1.weekday()
+#获取时间的年份，月份，日子，小时
+n1.year  n1.month  n1.day  n1.hour
+
+#跑步锻炼
+start=date(2000,1,1)
+end=date(2020,10,2)
+temp=timedelta(days=1)            #时间差
+ans=0
+while start != end:
+    if start.weekday()==0 or start.day==1:
+        ans+=2
+    else:
+        ans+=1
+    start+=temp
+print(ans)
+```
+
+**字符串操作：**
+
+```
+string.isalnum()    #字母或数字
+string.isalpha()    #字母
+string.isdligit()   #数字
+string.isupper()    #大写字母
+string.islower()    #小写字母
+string.isspace()    #空格
+string.upper()		#变大写
+string.lower()		#变小写
+string.strip()      #消除空格，或指定字符
+string.lstrip()     #消除左边的空格，或指定字符
+string.rstrip()     #消除右边的空格，或指定字符
+string.replace(str1,str2,num=string.count(str1)) #把 string 中的 str1 替换成 str2,如果 num 指定，则替换不超过 num 次.
+string.count(str,beg=0,end=len(string)) #返回 str 在 string 里面出现的次数，如果 beg 或者 end 指定则返回指定范围内 str 出现的次数
+string.encode(encoding='utf-8')  #编码
+string.decode(encoding='utf-8')  #解码
+string.find(str)    #返回对应str所在的索引下标
+srting.index(str)   #与find()方法一样，只不过如果str不在 string中会报一个异常
+
+字符串补齐:
+'''
+原字符串左侧对齐， 右侧补零:
+'''
+str.ljust(width,'0') 
+input: '789'.ljust(32,'0')
+output: '78900000000000000000000000000000'
+'''
+原字符串右侧对齐， 左侧补零:
+方法一：
+'''
+str.rjust(width,'0') 
+input: '798'.rjust(32,'0')
+output: '00000000000000000000000000000798'
+'''
+方法二：
+'''
+str.zfill(width)
+input: '123'.zfill(32)
+output:'00000000000000000000000000000123'
+'''
+方法三：
+'''
+'%07d' % n
+input: '%032d' % 89
+output:'00000000000000000000000000000089'
+```
+
